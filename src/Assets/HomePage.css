@@ -1,0 +1,188 @@
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100vh; /* Full viewport height */
+    background: linear-gradient(to right, #908b94 75%, #5a5d47 25%);
+    padding: 0 20px;
+    position: relative;
+}
+
+.text {
+    flex: 1;
+    color: white;
+    padding-right: 20px;
+    max-width: 60%; 
+}
+
+.hero-section h2 {
+    font-size: 2.5rem;
+    margin: 0;
+    color: white;
+}
+
+.hero-section p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    color: white;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.cta-button, .cta-addRecipe {
+    background-color: #5a5d47;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.cta-button:hover, .cta-addRecipe:hover {
+    background-color: #2a2c21;
+}
+
+/* Circular Image */
+.heroImage {
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    object-fit: cover;
+    position: absolute;
+    right: 90px; /* Adjust to move it closer to the right edge */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.add-recipe-section {
+    padding: 40px;
+    background-color: #f7f7f7;
+    text-align: center;
+}
+
+.add-recipe-section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #5a5d47;
+}
+
+
+.recipe-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 120px; 
+    max-width: 1100px; 
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+
+.recipe-card {
+    background-color: #ffffff; 
+    color: #5a5d47;
+    border: none; 
+    border-radius: 15px; 
+    padding: 20px;
+    width: 100%; 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.recipe-card:hover {
+    transform: scale(1.05); 
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); 
+}
+
+
+.recipe-card h3 {
+    color: #5a5d47;
+    margin-top: 0;
+}
+
+
+.recipe-card p {
+    color: #5a5d47;
+}
+
+.recipe-card .accent {
+    color: #5a5d47; 
+}
+
+
+.recipe-form {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-form h3 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #5a5d47;
+}
+
+.recipe-form .form-group {
+    margin-bottom: 20px;
+}
+
+.recipe-form .form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.recipe-form .form-group input,
+.recipe-form .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.recipe-form .submit-btn {
+    background-color: #5a5d47;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.recipe-form .submit-btn:hover {
+    background-color:#5a5d47 ;
+    color: #f0f0f0;
+}
+
+
+@media (max-width: 1200px) {
+    .recipe-list {
+        grid-template-columns: repeat(4, 1fr); /* 4 columns for smaller screens */
+    }
+}
+
+@media (max-width: 900px) {
+    .recipe-list {
+        grid-template-columns: repeat(3, 1fr); /* 3 columns for even smaller screens */
+    }
+}
+
+@media (max-width: 600px) {
+    .recipe-list {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for mobile screens */
+    }
+}
+
+@media (max-width: 400px) {
+    .recipe-list {
+        grid-template-columns: 1fr; /* 1 column for very small screens */
+    }
+}
