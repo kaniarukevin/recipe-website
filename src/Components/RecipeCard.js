@@ -1,23 +1,45 @@
 // src/Components/RecipeForm.js
 
 import React, { useState } from 'react';
-
+import axios from 'axios';
 
 const RecipeCard = () => {
-    const [recipeName, setRecipeName] = useState('');
-    const [ingredients, setIngredients] = useState('');
-    const [instructions, setInstructions] = useState('');
+    const [formData, setFormData] = useState({
+        recipeName: '',
+        ingredients: '',
+        instructions: '',
+        recipeOwner: '',
+        recipeImage: null
+    });
 
-    const handleSubmit = (e) => {
+    // Handle input change for text fields
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevData) => ({ ...prevData, [name]: value }));
+    };
+
+    // Handle file input for recipe image
+    const handleFileChange = (e) => {
+        setFormData((prevData) => ({ ...prevData, recipeImage: e.target.files[0] }));
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Recipe submitted');
-        console.log('Recipe Name:', recipeName);
-        console.log('Ingredients:', ingredients);
-        console.log('Instructions:', instructions);
+        const data = new FormData();
+        
+        Object.keys(formData).forEach((key) => {
+            data.append(key, formData[key]);
+        });
 
-        setRecipeName('');
-        setIngredients('');
-        setInstructions('');
+        try {
+            await axios.post('http://localhost:5000/api/recipes', data, {
+                headers: { 'Content-Type': 'multipart/form-data' }
+            });
+            console.log('Recipe submitted successfully!');
+            setFormData({ recipeName: '', ingredients: '',prepTime: '', instructions: '', recipeOwner: '', recipeImage: null });
+        } catch (error) {
+            console.error('Error submitting recipe:', error);
+        }
     };
 
     return (
@@ -28,9 +50,21 @@ const RecipeCard = () => {
                     <label htmlFor="recipe-name">Recipe Name</label>
                     <input
                         type="text"
+                        id="recipename"
+                        name="recipeName"
+                        value={formData.recipeName}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="recipe-type">Recipe Type</label>
+                    <input
+                        type="select"
                         id="recipe-name"
-                        value={recipeName}
-                        onChange={(e) => setRecipeName(e.target.value)}
+                        name="recipeName"
+                        value={formData.recipeName}
+                        onChange={handleChange}
                         required
                     />
                 </div>
@@ -38,8 +72,19 @@ const RecipeCard = () => {
                     <label htmlFor="ingredients">Ingredients</label>
                     <textarea
                         id="ingredients"
-                        value={ingredients}
-                        onChange={(e) => setIngredients(e.target.value)}
+                        name="ingredients"
+                        value={formData.ingredients}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="prepTime">Preparation Time</label>
+                    <textarea
+                        id="time"
+                        name="prepTime"
+                        value={formData.prepTime}
+                        onChange={handleChange}
                         required
                     />
                 </div>
@@ -47,8 +92,30 @@ const RecipeCard = () => {
                     <label htmlFor="instructions">Instructions</label>
                     <textarea
                         id="instructions"
-                        value={instructions}
-                        onChange={(e) => setInstructions(e.target.value)}
+                        name="instructions"
+                        value={formData.instructions}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="recipe-owner">Recipe Owner</label>
+                    <input
+                        type="text"
+                        id="recipe-owner"
+                        name="recipeOwner"
+                        value={formData.recipeOwner}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="recipe-image">Recipe Image</label>
+                    <input
+                        type="file"
+                        id="recipe-image"
+                        name="recipeImage"
+                        onChange={handleFileChange}
                         required
                     />
                 </div>
