@@ -1,37 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+// src/components/RecipeCard.js
+import React from 'react';
 
-const Recipe = () => {
-    const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('http://localhost:5000/api/recipes');
-                setData(response.data);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchData();
-    }, []);
-
-    if (loading) {
-        return <div>Loading...</div>;
-    }
-
+const Recipe = ({ recipe }) => {
     return (
-        <div>
-            <h1></h1>
-            <ul>
-                {data.map(item => (
-                    <li key={item.recipename}>{item.recipeName}</li> // Adjust according to your data structure
-                ))}
-            </ul>
+        <div className="recipe-card">
+            <img src={`../uploads/${recipe.image}`} alt={recipe.name} className="recipe-image" />
+            <h2>{recipe.name}</h2>
+            <p><strong>Owner:</strong> {recipe.owner}</p>
+            <p><strong>Prep Time:</strong> {recipe.prepTime}</p>
+            <p><strong>Ingredients:</strong> {recipe.ingredients}</p>
+            <p><strong>Instructions:</strong> {recipe.instructions}</p>
         </div>
     );
 };

@@ -30,7 +30,7 @@ db.connect((err) => {
 });
 
 // Handle recipe submission
-app.post('http://localhost:5000/api/recipes', upload.single('recipeImage'), (req, res) => {
+app.post('/api/recipes', upload.single('recipeImage'), (req, res) => {
     const { recipeName, ingredients,prepTime, instructions, recipeOwner } = req.body;
     const recipeImage = req.file ? req.file.filename : null;
 
@@ -46,7 +46,7 @@ app.post('http://localhost:5000/api/recipes', upload.single('recipeImage'), (req
         res.status(200).send('Recipe submitted successfully');
     });
 });
-app.get('http://localhost:5000/api/recipes', (req, res) => {
+app.get('/api/recipes', (req, res) => {
     db.query('SELECT * FROM recipes', (err, results) => {
         if (err) {
             console.error('Error Fetch', err);
@@ -56,5 +56,5 @@ app.get('http://localhost:5000/api/recipes', (req, res) => {
     });
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

@@ -32,7 +32,7 @@ const RecipeCard = () => {
         });
 
         try {
-            await axios.post('http://localhost:5000/api/recipes', data, {
+            await axios.post('http://localhost:3000/api/recipes', data, {
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
             console.log('Recipe submitted successfully!');
@@ -57,17 +57,7 @@ const RecipeCard = () => {
                         required
                     />
                 </div>
-                <div className="form-group">
-                    <label htmlFor="recipe-type">Recipe Type</label>
-                    <input
-                        type="select"
-                        id="recipe-name"
-                        name="recipeName"
-                        value={formData.recipeName}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
+                
                 <div className="form-group">
                     <label htmlFor="ingredients">Ingredients</label>
                     <textarea
