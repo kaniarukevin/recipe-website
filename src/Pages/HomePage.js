@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import RecipeCard from "../Components/RecipeCard";
@@ -9,6 +10,7 @@ import heroimage from'../Pages/Food_Image-ai-brush-removebg-igl1rom.png';
 
 const HomePage = () => {
     const [recipes, setRecipes] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchRecipes = async () => {
@@ -26,11 +28,11 @@ const HomePage = () => {
     }, []);
 
     const handleAddRecipeClick = () => {
-        const addRecipe = document.getElementById('recipe-form');
-        if (addRecipe) {
-          addRecipe.scrollIntoView({ behavior: 'smooth' });
-        }
+       navigate('/add-recipe');
       };
+      const handleRecipeClick = () => {
+        navigate('/recipes');
+       };
     
       const handleViewRecipeClick = () => {
         const viewRecipe = document.getElementById('recipe-list');
@@ -53,7 +55,9 @@ const HomePage = () => {
                         your kitchen creations to life!
                     </p>
                     <div className="cta-buttons">
-                        <Link className="cta-addRecipe" onClick={handleAddRecipeClick}>Add Recipe</Link>
+                    <button className="cta-addRecipe" onClick={handleAddRecipeClick}>
+            Add Recipe
+        </button>
                         <Link className="cta-button" onClick={handleViewRecipeClick} >View Recipes</Link>
                     </div>
                 </div>
@@ -61,17 +65,15 @@ const HomePage = () => {
             </div>
 
             
-            <div className="add-recipe-section">
-                <h2>Add Your Recipes!</h2>
-                <RecipeCard />
-            </div>
 
-            
+            <h3 className="section-title">Featured Recipes</h3>
             <div id='recipe-list' className="recipe-list">
+                
                 {recipes.map(recipe => (
                     <Recipe key={recipe.id} recipe={recipe} />
                 ))}
             </div>
+            <button className="view-more" onClick={handleRecipeClick}>View More Recipes</button>
             <Footer/>
         </>
     );

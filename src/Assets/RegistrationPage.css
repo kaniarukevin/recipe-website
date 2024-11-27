@@ -1,14 +1,18 @@
+/* General Body Styling */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #f7f7f7; /* Very light gray background */
+    background-color: #f7f7f7; /* Light background for contrast */
+    color: #333; /* Neutral text color */
 }
 
+/* Registration Layout */
 .registration {
     display: flex;
     height: calc(100vh - 60px);
 }
 
+/* Left Section - Description or Links */
 .register-section {
     flex: 1 1 50%;
     background-color: #fff;
@@ -17,7 +21,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 30px;
-    color: #555;
+    color: #555; /* Neutral tone for text */
     text-align: center;
 }
 
@@ -28,7 +32,7 @@ body {
 
 .register-section a {
     font-size: 1.2rem;
-    color: #5a5d47; /* Adjusted to match the green accents */
+    color: #5a5d47; /* Green accent for link */
     background-color: #fff;
     padding: 10px 20px;
     border-radius: 10px;
@@ -38,76 +42,131 @@ body {
 
 .register-section a:hover {
     color: #fff;
-    background-color: #5a5d47; /* Match hover with green color */
+    background-color: #5a5d47; /* Green hover effect */
     transform: scale(1.05);
 }
 
+/* Right Section - Registration Form */
 .registration-box-container {
     flex: 1 1 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #fff;
+    background-color: #f7f7f7; /* Matches the light background theme */
 }
 
+/* Form Container */
 .registration-box {
     width: 100%;
     max-width: 400px;
     padding: 30px;
-    border-radius: 5px;
+    border-radius: 10px;
     background-color: #5a5d47; /* Green accent */
-    color: #fff;
-    box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+    color: #fff; /* Text color for contrast */
+    box-shadow: rgba(0, 0, 0, 0.1) 6px 6px 16px 0px, rgba(255, 255, 255, 0.8) -6px -6px 16px 0px;
 }
 
+/* Header Styling */
 .registration-header {
     text-align: center;
     margin-bottom: 20px;
 }
 
 .registration-header header {
-    color: #E7E8D1; /* Light color for header */
-    font-weight: 600;
-    font-size: large;
+    color: #E7E8D1; /* Light greenish color */
+    font-weight: 700;
+    font-size: 1.5rem;
 }
 
+/* Input Fields */
 .input-box .input-field {
     width: 95%;
-    height: 30px;
+    height: 40px;
     font-size: 16px;
     padding: 10px;
-    margin-bottom: 17px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     outline: none;
-    transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease, border-color 0.3s;
 }
 
 .input-box .input-field:focus {
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+    border-color: #5a5d47; /* Focus color matches the theme */
 }
 
+/* Dropdown Styling for Gender */
+.input-box select {
+    appearance: none; /* Removes native styling */
+    background-color: #fff;
+    height: 40px;   
+    color: #333;
+    cursor: pointer;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-box select:focus {
+    border-color: #5a5d47; /* Matches theme on focus */
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Submit Button */
 .submit-btn {
     width: 100%;
-    height: 40px;
+    height: 45px;
     background-color: #fff;
-    color: #5a5d47; /* Green accent */
-    border: none;
-    border-radius: 11px;
-    transition: background-color 0.3s, transform 0.3s;
+    color: #5a5d47; /* Green text */
+    border: 2px solid #5a5d47;
+    border-radius: 8px;
+    font-size: 16px;
     font-weight: 600;
-    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
 }
 
 .submit-btn:hover {
-    color: #333; /* Slightly darker color on hover */
-    font-weight: 700;
-    transform: scale(1.05);
+    background-color: #5a5d47; /* Green on hover */
+    color: #fff; /* Inverse text color */
+    transform: scale(1.05); /* Subtle hover effect */
 }
 
+/* Error and Success Messages */
 .error-message {
-    color: black;
+    color: #ff4d4d; /* Red for error messages */
     font-weight: 500;
     margin-bottom: 10px;
+    text-align: center;
+}
+
+.success-message {
+    color: #e7e8d1; /* Light greenish color for success */
+    font-weight: 500;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .registration {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .register-section,
+    .registration-box-container {
+        flex: 1 1 auto;
+    }
+
+    .registration-box {
+        width: 90%;
+        max-width: 100%;
+    }
 }

@@ -1,0 +1,113 @@
+/* Recipe Form Container */
+.recipe-form {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+/* Success/Error Message Styling */
+.success-message {
+    color: #2e311f;
+    font-weight: bold;
+}
+
+.error-message {
+    color: red;
+    font-weight: bold;
+}
+
+/* Input Fields */
+.form-group {
+    margin-bottom: 20px;
+}
+
+input[type="text"], input[type="number"], textarea, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* Buttons */
+button[type="submit"], .add-btn {
+    padding: 10px 20px;
+    background-color: #5a5d47; /* Green color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button[type="submit"]:hover, .add-btn:hover {
+    background-color: #2e311f; /* Darker green */
+}
+
+/* Dynamic Input Fields */
+.dynamic-field {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.dynamic-field input {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.dynamic-field button {
+    background-color: #5a5d47; /* Close button color (red) */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.dynamic-field button:hover {
+    background-color: #2e311f; /* Darker red on hover */
+}
+
+/* Spacing Between New Ingredients/Instructions Fields */
+.dynamic-field + .dynamic-field {
+    margin-top: 10px;
+}
+
+/* Add Ingredient/Instruction Button Styling */
+.add-btn {
+    display: inline-block;
+    background-color: #5a5d47; /* Blue color */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.add-btn:hover {
+    background-color: #2e311f; /* Darker blue on hover */
+}
+
+/* Select and Textarea fields */
+select, textarea {
+    width: 100%;
+}
+
+/* Small Spacing Between Ingredients and Instructions */
+input[type="text"], textarea, select {
+    margin-bottom: 10px;
+}
+
+/* Diet Type Dropdown */
+select {
+    padding: 10px;
+}

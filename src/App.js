@@ -4,7 +4,10 @@ import HomePage from "./Pages/HomePage";
 import RegistrationPage from "./Pages/RegistrationPage";
 import LoginPage from "./Pages/LoginPage";
 import RecipePage from "./Pages/RecipePage";
+import AddRecipes from "./Pages/AddRecipes";
 import { Toaster } from "sonner";
+import SpecificRecipe from "./Pages/SpecificRecipe";
+import MyRecipesPage from "./Pages/MyRecipesPage";
 
 
 
@@ -19,6 +22,9 @@ const App = () => {
           <Route path="/registration" element={<RegistrationPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/recipes" element={<RecipePage/>} />
+          <Route path="/add-recipe" element={<AddRecipes/>} />
+          <Route path="/recipe/:id" element={<SpecificRecipe/>} />
+          <Route path="/my-recipes" element={<MyRecipesPage/>} />
         </Routes>
 
     </Router>

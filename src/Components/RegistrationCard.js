@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios'; // Make sure axios is imported
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../Assets/RegistrationPage.css';
 import { toast } from 'sonner';
@@ -10,9 +10,10 @@ const RegistrationCard = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [gender, setGender] = useState(''); // New state for gender
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
-  const navigate = useNavigate(); // Hook for navigating after successful registration
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,8 +22,15 @@ const RegistrationCard = () => {
 
     // Validate that passwords match
     if (password !== confirmPassword) {
-      setErrorMessage("Passwords do not match.");
-      toast.error("Passwords do not match.");
+      setErrorMessage('Passwords do not match.');
+      toast.error('Passwords do not match.');
+      return;
+    }
+
+    // Validate that gender is selected
+    if (!gender) {
+      setErrorMessage('Please select your gender.');
+      toast.error('Please select your gender.');
       return;
     }
 
@@ -33,12 +41,13 @@ const RegistrationCard = () => {
         password,
         fname,
         lname,
+        gender, // Include gender in the request
       });
 
       if (response.status === 201) {
         setSuccessMessage('Registration successful! Redirecting to login...');
         toast.success('Registration successful! Redirecting to login...');
-        setTimeout(() => navigate('/login'), 2000); // Redirect to login after 2 seconds
+        setTimeout(() => navigate('/login'), 2000);
       }
     } catch (error) {
       console.error('Error during signup:', error);
@@ -107,6 +116,24 @@ const RegistrationCard = () => {
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
+        </div>
+        {/* Gender Dropdown */}
+        <div className="input-box">
+          <select
+            className="input-field"
+            required
+            value={gender}
+            onChange={(e) => setGender(e.target.value)}
+          >
+            <option value="" disabled>
+              Select Gender
+            </option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="non-binary">Non-binary</option>
+            <option value="other">Other</option>
+            <option value="prefer not to say">Prefer not to say</option>
+          </select>
         </div>
         {errorMessage && <p className="error-message">{errorMessage}</p>}
         {successMessage && <p className="success-message">{successMessage}</p>}

@@ -1,9 +1,13 @@
+.recipe-page {
+    padding-top: 25px;
+}
+
 .recipe-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 75px;
     max-width: 1100px;
-    margin:  auto;
+    margin: auto;
     padding: 20px;
 }
 
@@ -17,6 +21,7 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
+    position: relative; /* Ensure the heart icon is positioned relative to the card */
 }
 
 .recipe-card:hover {
@@ -40,12 +45,118 @@
 .recipe-card .accent {
     color: #5a5d47;
 }
-
-.read-more {
-    cursor: pointer;
-    color: #5a5d47;
-    text-decoration: underline;
+.recipe-image {
+    width: 100%; /* Make the image take up the full width of the card */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Optional: Add rounded corners to match the card design */
+    object-fit: cover; /* Ensure the image covers the space without stretching */
+    max-height: 200px; /* Limit the height to prevent oversized images */
+    display: block; /* Ensure consistent display in some browsers */
 }
+.star-icon.half {
+    color: gray; /* Optional: different color for half stars */
+}
+/* Category, Cuisine, Diet Type styles (arranged in a row) */
+.recipe-categories,
+.recipe-cuisine,
+.recipe-diet {
+    display: flex; /* Arrange items in a row */
+    gap: 10px; /* Space between items */
+    margin: 10px 0; /* Margin around the group */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+/* Styling for individual tags */
+.recipe-categories span,
+.recipe-cuisine span,
+.recipe-diet span {
+    background-color: #e0e0e0; /* Light gray background */
+    color: #5a5d47; /* Green text */
+    padding: 5px 10px;
+    border-radius: 20px;
+    margin: 5px; /* Add space between tags */
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-align: center;
+    white-space: nowrap; /* Prevent text from wrapping inside tags */
+}
+
+/* Different background colors for alternating items */
+.recipe-categories span:nth-child(odd),
+.recipe-cuisine span:nth-child(odd),
+.recipe-diet span:nth-child(odd) {
+    background-color: #f2f2f2; /* Lighter gray for odd items */
+}
+
+.recipe-categories span:nth-child(even),
+.recipe-cuisine span:nth-child(even),
+.recipe-diet span:nth-child(even) {
+    background-color: #d0f5d2; /* Greenish background for even items */
+}
+
+/* Ensure responsiveness for smaller screens */
+@media (max-width: 768px) {
+    .recipe-categories,
+    .recipe-cuisine,
+    .recipe-diet {
+        justify-content: center; /* Center tags on smaller screens */
+    }
+}
+
+
+/* Add to Favorites button - Heart icon */
+.add-to-favorites {
+    position: absolute; /* Position it at the top right corner */
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    color: #5a5d47; /* Default color */
+    font-size: 1.5rem; /* Icon size */
+    cursor: pointer;
+    transition: color 0.3s ease;
+    z-index: 1; /* Ensure the button is always on top */
+}
+
+/* Change color to red when the heart is clicked */
+.add-to-favorites.filled .icon {
+    color: red; /* Fill the heart icon with red */
+}
+
+/* View More button */
+.view-more {
+    background-color: #5a5d47; /* Green background */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.view-more:hover {
+    background-color: #4b4e38; /* Darker green on hover */
+}
+
+.no-recipes-message {
+    text-align: center;
+    padding: 50px;
+    background-color: #f8d7da; /* Light red background */
+    color: #721c24; /* Dark red text */
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    margin-top: 20px;
+  }
+  
+  .no-recipes-message h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .no-recipes-message p {
+    font-size: 1rem;
+  }
+  
 
 /* Responsive adjustments */
 @media (max-width: 1200px) {

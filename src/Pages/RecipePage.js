@@ -3,7 +3,7 @@ import axios from 'axios';
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import RecipeCard from '../Components/Recipe'; 
-import '../Assets/RecipePage.css'
+import '../Assets/RecipePage.css';
 
 const RecipePage = () => {
     const [data, setData] = useState([]);
@@ -12,7 +12,7 @@ const RecipePage = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/api/recipes');
+                const response = await axios.get('http://localhost:4000/api/recipes');
                 setData(response.data);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -30,16 +30,25 @@ const RecipePage = () => {
 
     return (
         <>
-        <Navbar/>
-        <div className="recipe-page">
-            <h1>All Recipes</h1>
-            <div className="recipe-grid">
-                {data.map(recipe => (
-                    <RecipeCard key={recipe.id} recipe={recipe} />
-                ))}
+            <Navbar/>
+            
+            <div className="recipe-page">
+                <h1>All Recipes</h1>
+                {/* Check if no recipes are found */}
+                {data.length === 0 ? (
+                    <div className="no-recipes-message">
+                        <h2>No Recipes Found</h2>
+                        <p>It looks like there are no recipes available right now. Please check back later.</p>
+                    </div>
+                ) : (
+                    <div className="recipe-grid">
+                        {data.map(recipe => (
+                            <RecipeCard key={recipe.id} recipe={recipe} />
+                        ))}
+                    </div>
+                )}
             </div>
-        </div>
-        <Footer/>
+            <Footer/>
         </>
     );
 };

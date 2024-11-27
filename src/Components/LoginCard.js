@@ -1,47 +1,45 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import the hook
-import axios from 'axios'; // Import axios for making API requests
+import { useNavigate } from 'react-router-dom'; // For navigation
+import axios from 'axios'; // For API requests
 
 const LoginCard = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
-  const navigate = useNavigate(); // Initialize the useNavigate hook
+  const navigate = useNavigate(); // Initialize navigation
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Clear any previous messages
+    // Clear previous messages
     setErrorMessage('');
     setSuccessMessage('');
 
     try {
-      // Send login request to the server
-      const response = await axios.post('http://localhost:4000/login', {
-        email,
-        password,
-      });
+      // Make a login request to the backend
+      const response = await axios.post('http://localhost:4000/login', { email, password });
 
       if (response.status === 200) {
-        // Store user info in local storage
-        localStorage.setItem('user', JSON.stringify(response.data.user));
+        const { token, user } = response.data;
 
-        // Redirect based on user role
-        if (response.data.user.role === 'admin') {
-          navigate('/home'); // Redirect to /home if the user is an admin
+        // Store token and user info in localStorage
+        localStorage.setItem('token', token);
+        localStorage.setItem('user', JSON.stringify(user));
+
+        // Redirect user based on role
+        if (user.role === 'admin') {
+          navigate('/admin-dashboard'); // Redirect admin to admin dashboard
         } else {
-          navigate('/home'); // Otherwise, redirect to a different page
+          navigate('/home'); // Redirect regular users to home
         }
 
-        console.log('Login successful:', response.data);
         setSuccessMessage('Login successful!');
         setEmail('');
         setPassword('');
       }
     } catch (error) {
-      // Handle error (e.g., show error message)
+      // Handle login errors
       console.error('Error during login:', error.response ? error.response.data : error);
       setErrorMessage(error.response ? error.response.data.message : 'An error occurred.');
     }
@@ -55,7 +53,7 @@ const LoginCard = () => {
       <form onSubmit={handleSubmit}>
         <div className="input-box">
           <input
-            type="email" // Use "email" type for email validation
+            type="email"
             className="input-field"
             placeholder="Email"
             autoComplete="on"
